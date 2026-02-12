@@ -8,17 +8,12 @@ class ListaUnidimensional:
             self.lista[i] = valores[i]
     
     def insertar(self, posicion, valor):
-        """Inserta un valor en la posición especificada"""
         if 0 <= posicion < self.tamaño:
             self.lista.insert(posicion, valor)
-        else:
-            print(f"Error: posición {posicion} fuera de rango")
     
     def buscar(self, valor):
-        """Busca un valor en la lista y devuelve su índice"""
         try:
-            indice = self.lista.index(valor)
-            return indice
+            return self.lista.index(valor)
         except ValueError:
             return -1
     
@@ -38,23 +33,16 @@ class ListaBidimensional:
                 self.matriz[i][j] = valores[i][j]
     
     def eliminar(self, fila, columna):
-        """Elimina/establece en 0 el elemento en la posición especificada"""
         if 0 <= fila < self.filas and 0 <= columna < self.columnas:
             self.matriz[fila][columna] = 0
-        else:
-            print(f"Error: posición [{fila}][{columna}] fuera de rango")
     
     def buscar_en_fila(self, fila, valor):
-        """Busca un valor en una fila específica y devuelve su índice de columna"""
         if 0 <= fila < self.filas:
             try:
-                columna = self.matriz[fila].index(valor)
-                return columna
+                return self.matriz[fila].index(valor)
             except ValueError:
                 return -1
-        else:
-            print(f"Error: fila {fila} fuera de rango")
-            return -1
+        return -1
     
     def mostrar(self):
         print("Lista bidimensional:")
@@ -77,36 +65,26 @@ valores = [
 lista2D.llenar(valores)
 lista2D.mostrar()
 
-print("\n--- Acceso a elementos de las listas ---")
-print("\na) Segundo elemento del array unidimensional (índice 1):")
-print(f"Elemento: {lista1D.lista[1]}")
+print("\na) Segundo elemento del array:")
+print(lista1D.lista[1])
 
-print("\nb) Elemento de la segunda fila y segunda columna (índice [1][1]):")
-print(f"Elemento: {lista2D.matriz[1][1]}")
+print("\nb) Elemento [1][1]:")
+print(lista2D.matriz[1][1])
 
-print("\n\n--- Inserción y eliminación de elementos ---")
-print("\na) Insertando 'Estructura de datos' en la posición 3:")
+print("\na) Insertando 'Estructura de datos' en posición 3:")
 lista1D.insertar(3, "Estructura de datos")
 lista1D.mostrar()
 
-print("\nb) Eliminando el elemento de la tercera fila y tercera columna [2][2]:")
-print(f"Elemento antes: {lista2D.matriz[2][2]}")
+print("\nb) Eliminando elemento [2][2]:")
 lista2D.eliminar(2, 2)
-print(f"Elemento después:")
 lista2D.mostrar()
 
-print("\n\n--- Búsqueda de elementos en arrays ---")
-print("\na) Buscando 'Estructura de datos' en el array unidimensional:")
+print("\na) Buscando 'Estructura de datos':")
 indice = lista1D.buscar("Estructura de datos")
 if indice != -1:
-    print(f"Elemento encontrado en índice: {indice}")
-else:
-    print("Elemento no encontrado")
+    print(f"Índice: {indice}")
 
-print("\nb) Buscando el valor 5 en la segunda fila (índice 1):")
+print("\nb) Buscando 5 en fila 1:")
 indice_columna = lista2D.buscar_en_fila(1, 5)
 if indice_columna != -1:
-    print(f"Elemento encontrado en columna: {indice_columna}")
-    print(f"Posición completa: [1][{indice_columna}]")
-else:
-    print("Elemento no encontrado en esa fila")
+    print(f"Columna: {indice_columna}")
